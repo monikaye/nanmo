@@ -130,6 +130,8 @@ class SaledController extends Controller
                     ->orderBy('username')
                     ->get();
         //获取全部货号
+
+
         $huohao = DB::table('ly_admin_huohao')
                     ->select('id', 'huohao')
                     ->orderBy('huohao')
@@ -323,9 +325,17 @@ class SaledController extends Controller
                         -> select('shopname','id') 
                         -> get();
         //获取货号
-        $huohao  = DB::table("ly_admin_huohao") 
-                        -> select('huohao','id') 
-                        -> get();
+        $huohao = DB::table('ly_admin_huohao as h')
+            ->join('ly_admin_shop as s','h.shopid','=','s.id')
+            ->select('h.id', 'h.huohao','s.shopname as name')
+            ->orderBy('s.shopname')
+            ->get();
+
+
+
+//        $huohao  = DB::table("ly_admin_huohao")
+//                        -> select('huohao','id')
+//                        -> get();
         //获取手机
         $phone = DB::table("ly_admin_phone") 
                         -> select('phonenum','id') 
