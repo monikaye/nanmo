@@ -217,7 +217,7 @@ class FuserController extends Controller
      */
     //展示添加页面
     public function create()
-    {   
+    {
         //加载添加模板
         return view("Admin.Fuser.add");
     }
@@ -230,7 +230,8 @@ class FuserController extends Controller
      */
     // 执行放单人添加
     public function store(FuserInsertRequest $request)
-    {   
+    {
+        echo('执行添加');
         //获取要添加得数据
         $data                = $request->input();
         $data['create_time'] = time();
@@ -362,5 +363,27 @@ class FuserController extends Controller
          
         //获取数字对应的星期
         return $weekArr[$number_wk];
+    }
+    public function add(Request $request)
+    {
+       $user = $request->input('user');
+       $hasuser = DB::table('ly_admin_fuser')->where('username','=',$user)->first();
+       if($hasuser){
+           echo 2;
+    }elseif (empty($user)){
+           echo 0;
+       }
+       $data = [];
+    $data['username'] = $user;
+    $data['create_time'] = time();
+    $data['userid'] = session('username');
+    $data['status'] = 1;
+
+
+       if(DB::table('ly_admin_fuser')->insert($data)){
+        echo 1;
+       }else{
+           echo 3;
+       }
     }
 }

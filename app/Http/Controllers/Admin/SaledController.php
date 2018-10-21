@@ -331,7 +331,7 @@ class SaledController extends Controller
             ->orderBy('s.shopname')
             ->get();
 
-//修改后a
+//修改后
 
 //        $huohao  = DB::table("ly_admin_huohao")
 //                        -> select('huohao','id')

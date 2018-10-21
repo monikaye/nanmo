@@ -56,6 +56,8 @@ Route::resource("/shop","Admin\ShopController")->middleware('adminlogin');
 Route::post("/spsearch","Admin\ShopController@index");
 //放单人管理
 Route::resource("/fuser","Admin\FuserController")->middleware('adminlogin');
+//放单人管理
+Route::get("/fuseradd","Admin\FuserController@add");
 //制度值日表
 Route::resource("/zhidu","Admin\ZhiController")->middleware('adminlogin');
 Route::get("/zhidus","Admin\ZhiController@zhidu")->middleware('adminlogin');
