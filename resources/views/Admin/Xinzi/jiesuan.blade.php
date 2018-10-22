@@ -7,8 +7,8 @@
                      <h2>{{$name or ""}}</h2>
                 </div>
                 <div class="panel-body">
-                    <div class="col-lg-6">
-                        <form role="form" onsubmit="return false"  enctype="multipart/form-data">
+                    <div class="col-lg-12">
+                        <form role="form" onsubmit="return false" enctype="multipart/form-data">
                             <label>拼接计算工资字段</label><br>
                             <label>
                                 <select class="form-control input-sm" name="jx">
@@ -37,6 +37,12 @@
                             </label>
                             <label class="checkbox-inline">
                                 <input type="text" class="form-control input-sm" name='test'>
+                            </label>+
+                            <label class="checkbox-inline">
+                                额外薪资
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="text" class="form-control ew" name='extra'>
                             </label>
                             <br><br><br><br>
                             <button class="btn btn-info" value="{{$id}}">结算</button>
@@ -69,6 +75,9 @@
         }
         //获取评测金
         var pc   = $('input[name="test"]').val();
+        //获取额外
+        var ew   = $('input[name="extra"]').val();
+
         // alert(pc)
         $.ajax({
             type:"get",
@@ -79,7 +88,8 @@
                 dx:dx,
                 cj:cj,
                 fj:fj,
-                pc:pc
+                pc:pc,
+                ew:ew
             },
             success:function(msg){
                 if(msg == 1){

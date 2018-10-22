@@ -14,7 +14,7 @@ class ShopController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {   
+    {
         $map  = [];
         if($request->input('shopname')) {
             $map[] = ['shopname', 'like', "%".$request->input('shopname')."%"];
@@ -38,8 +38,7 @@ class ShopController extends Controller
         $next   = ($page + 1) < $sums?$page + 1:$sums;
         //6、求偏移量
         $offset = ($page - 1) * $rev;
-
-
+        
         $info  = DB::table('ly_admin_shop')
                     ->where($map)
                     ->offset($offset)
@@ -67,7 +66,7 @@ class ShopController extends Controller
         for ($i = 1;$i <= $sums;$i++) {
             $pp[$i] = $i;
         }
-        // dd($info);
+//         dd($info);
         return view("Admin.Shop.index", ['info' => $info,'prev'=>$prev,'next'=>$next,'sums'=>$sums,'pp'=>$pp,'page'=>$page]);
     }
 
